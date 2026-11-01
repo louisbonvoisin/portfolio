@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Louis Bonvoisin | ePortfolio</title>
+<meta name="description" content="ePortfolio of Louis Bonvoisin, engineering student in fluid mechanics, energy and environment at ENSEEIHT (Toulouse INP).">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)">
+<!--
+  HOW TO EDIT
+  1. Put these files in the same folder as this one:
+     photo.jpg, cv-en.pdf, cv-fr.pdf
+     and, for the project images: blackjack.png, latex.png
+     (any missing file shows a highlighted placeholder instead).
+  2. Fill the CONFIG object at the bottom of the file (pitch video, LinkedIn).
+  3. Search for "TODO" and replace every placeholder (they are highlighted on the page).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --paper-2: #F2F4F7;
+    --ink: #101828;
+    --muted: #5B6576;
+    --water: #1D3A63;
+    --sand: #3B4A5E;
+    --rule: #E4E7EC;
+    --water-soft: color-mix(in srgb, var(--water) 8%, var(--paper));
+    --sand-soft: color-mix(in srgb, var(--sand) 18%, transparent);
+    --todo: #D9A21B;
+    --serif: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: "Public Sans", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    --wrap: 72rem;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0D1117;
+      --paper-2: #161B22;
+      --ink: #E6EAF0;
+      --muted: #9AA4B2;
+      --water: #8FB4E3;
+      --sand: #B8C2D0;
+      --rule: #262D36;
+      --todo: #E0B84A;
+      --water-soft: color-mix(in srgb, var(--water) 7%, var(--paper));
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--water); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--sand); outline-offset: 3px; border-radius: 2px; }
+  p { margin: 0 0 1rem; text-wrap: pretty; }
+  ul { padding-left: 1.2rem; margin: 0 0 1rem; }
+  li { margin-bottom: .35rem; }
+  img { display: block; max-width: 100%; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- Placeholders to replace ---------- */
+  .todo { background: color-mix(in srgb, var(--todo) 26%, transparent); border-bottom: 1px dashed var(--todo); padding: 0 .2em; color: var(--ink);
+    -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+  /* ---------- Hero: potential flow past a cylinder ---------- */
+  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--rule); }
+  .hero svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .streams path { fill: none; stroke: var(--water); stroke-width: 1.1; opacity: .42;
+    stroke-dasharray: 10 12; animation: flow 3.2s linear infinite; }
+  .cyl { fill: var(--sand); }
+  .cyl-initials { fill: var(--paper); font: 400 64px var(--serif); }
+  .cyl-ring { fill: none; stroke: var(--sand); stroke-width: 3; }
+  @keyframes flow { to { stroke-dashoffset: -44; } }
+  .hero-inner { position: relative; max-width: var(--wrap); margin: 0 auto; padding: 3.25rem 1.5rem 3rem; }
+  .hero-kicker { margin: 0 0 .9rem; color: var(--muted); font-size: .9375rem; }
+  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 8vw, 5.75rem);
+    line-height: .95; letter-spacing: -.01em; margin: 0 0 1.1rem; }
+  .lede { max-width: 31rem; font-size: 1.1875rem; line-height: 1.5; margin: 0 0 1.5rem; }
+  .caption { position: absolute; right: 1rem; bottom: .6rem; font-size: .75rem; color: var(--muted); font-style: italic; }
+  .next-line { display: inline-flex; align-items: baseline; gap: .55rem; margin: 1.35rem 0 0; font-size: .9375rem; color: var(--muted); }
+  .next-line::before { content: ""; flex: none; width: .5rem; height: .5rem; border-radius: 50%; background: var(--sand); transform: translateY(-.05rem); }
+  .next-line a { color: var(--ink); }
+
+  .links { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .btn { display: inline-flex; align-items: center; gap: .45rem; padding: .55rem 1.05rem; border: 1px solid var(--ink); border-radius: 999px;
+    color: var(--ink); background: var(--paper); text-decoration: none; font-size: .9375rem; font-weight: 500; white-space: nowrap;
+    transition: background-color .15s, color .15s, border-color .15s; }
+  .btn:hover { background: var(--paper-2); }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn.primary:hover { background: var(--water); border-color: var(--water); }
+  .btn .ar { font-size: .85em; opacity: .7; }
+
+  /* ---------- Tabs ---------- */
+  nav.tabs { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 92%, transparent);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+  nav.tabs ul { list-style: none; margin: 0 auto; padding: 0 1rem; max-width: var(--wrap);
+    display: flex; gap: .25rem; overflow-x: auto; scrollbar-width: none; }
+  nav.tabs ul::-webkit-scrollbar { display: none; }
+  nav.tabs li { margin: 0; }
+  nav.tabs a { display: block; padding: .95rem .75rem .85rem; white-space: nowrap; color: var(--muted);
+    text-decoration: none; font-size: .9375rem; border-bottom: 2px solid transparent; transition: color .15s; }
+  nav.tabs a:hover { color: var(--ink); }
+  nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--sand); }
+
+  main { max-width: var(--wrap); margin: 0 auto; padding: 3rem 1.5rem 4.5rem; }
+  section.tab { display: none; }
+  section.tab.active { display: block; animation: tabIn .35s ease both; }
+  @keyframes tabIn { from { opacity: 0; transform: translateY(6px); } }
+  [id] { scroll-margin-top: 4.75rem; }
+  .prose { max-width: 42rem; }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.25rem, 4.5vw, 3.1rem);
+    line-height: 1.05; margin: 0 0 1.25rem; }
+  h3 { font-size: 1.15rem; font-weight: 600; margin: 0 0 .9rem; }
+  h4 { font-size: 1.0625rem; font-weight: 600; margin: 0 0 .15rem; }
+  .sub { margin-top: 3.25rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .intro { font-size: 1.1875rem; line-height: 1.55; max-width: 42rem; }
+  .meta { color: var(--muted); font-size: .9375rem; margin: 0 0 .9rem; }
+  .serif { font-family: var(--serif); font-weight: 400; }
+
+  /* ---------- Welcome ---------- */
+  .welcome-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 3.5rem; align-items: start; }
+  .welcome-grid h2 { margin-bottom: 1rem; }
+  .welcome-grid .prose p:first-child { font-size: 1.125rem; }
+  .pitch-fig { margin: 0; }
+  .pitch-fig figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem;
+    margin-top: .7rem; font-size: .9375rem; color: var(--muted); }
+  .pitch-fig figcaption a { color: var(--ink); }
+
+  .video { position: relative; aspect-ratio: 16 / 9; width: 100%; background: var(--paper-2);
+    border: 1px dashed var(--sand); display: grid; place-items: center; text-align: center; padding: 1.5rem; color: var(--muted); overflow: hidden; }
+  .video.has { border: 0; padding: 0; background: #000; }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-ph { display: grid; justify-items: center; gap: .35rem; max-width: 30rem; }
+  .play { width: 3.75rem; height: 3.75rem; border-radius: 50%; border: 1.5px solid var(--water); display: grid; place-items: center; margin-bottom: .5rem; }
+  .play::after { content: ""; width: 0; height: 0; margin-left: .25rem;
+    border-left: .9rem solid var(--water); border-top: .55rem solid transparent; border-bottom: .55rem solid transparent; }
+  .video-title { margin: 0; font: 400 1.75rem/1.1 var(--serif); color: var(--ink); }
+  .video-meta { margin: 0 0 .5rem; font-size: .9375rem; }
+  .video-ph .todo { font-size: .875rem; line-height: 1.5; }
+
+  .glance { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; }
+  .glance > div { padding: 0 1.5rem 0 0; }
+  .glance > div + div { padding-left: 1.5rem; border-left: 1px solid var(--rule); }
+  .glance dt { color: var(--muted); font-size: .9375rem; margin-bottom: .15rem; }
+  .glance dd { margin: 0 0 1rem; }
+
+  .facts { display: grid; grid-template-columns: auto 1fr; gap: .65rem 1.5rem; margin: 0; }
+  .facts dt { color: var(--muted); font-size: .9375rem; padding-top: .1rem; }
+  .facts dd { margin: 0; }
+
+  /* ---------- Timeline ---------- */
+  .timeline { list-style: none; padding: 0; margin: 0; max-width: 50rem; }
+  .timeline > li { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1.25rem; margin: 0; }
+  .timeline .when { font: 400 1.5rem/1.2 var(--serif); color: var(--water); padding-top: .05rem; }
+  .tl-body { position: relative; border-left: 2px solid var(--rule); padding: 0 0 2rem 1.6rem; }
+  .timeline > li:last-child .tl-body { padding-bottom: .25rem; }
+  .tl-body::before { content: ""; position: absolute; left: -7px; top: .45rem; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--paper); border: 2px solid var(--water); }
+  .timeline > li:last-child .tl-body::before { background: var(--water); }
+  .tl-body .meta { margin-bottom: .6rem; }
+
+  /* ---------- Projects ---------- */
+  .project { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2.75rem; align-items: start;
+    padding: 2.25rem 0; border-top: 1px solid var(--rule); }
+  .project:first-of-type { border-top: 0; padding-top: .5rem; }
+  .p-num { display: block; font: 400 1.125rem var(--serif); color: var(--water); margin-bottom: .3rem; }
+  .project.pending .p-num { color: var(--sand); }
+  .project h4 { font: 400 1.85rem/1.1 var(--serif); margin: 0 0 .4rem; }
+  .project dl, .card dl { display: grid; grid-template-columns: 8.5rem 1fr; gap: .5rem 1.25rem; margin: 0; }
+  .project dt, .card dt { color: var(--muted); font-size: .9375rem; padding-top: .1rem; }
+  .project dd, .card dd { margin: 0; }
+
+  .shot { position: relative; margin: 0; }
+  .shot-frame { position: relative; aspect-ratio: 4 / 3; background: var(--paper-2); border: 1px dashed var(--sand);
+    display: grid; place-items: center; padding: 1.5rem; text-align: center; overflow: hidden; }
+  .shot-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .shot.has .shot-frame { border: 1px solid var(--rule); padding: 0; }
+  .shot.has .ph { display: none; }
+  .shot .ph { font-size: .875rem; line-height: 1.5; max-width: 22rem; }
+  .shot figcaption { margin-top: .6rem; font-size: .875rem; color: var(--muted); }
+  .shot.browser .shot-frame { aspect-ratio: 16 / 10; padding-top: 2.6rem; }
+  .shot.browser .shot-frame::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1.6rem;
+    background: var(--paper); border-bottom: 1px solid var(--rule); z-index: 1; }
+  .shot.browser .shot-frame::after { content: ""; position: absolute; left: .7rem; top: .55rem; width: .5rem; height: .5rem; border-radius: 50%;
+    background: var(--rule); box-shadow: .8rem 0 0 var(--rule), 1.6rem 0 0 var(--rule); z-index: 2; }
+  .shot.browser .shot-frame img { top: 1.6rem; height: calc(100% - 1.6rem); object-position: top; }
+
+  /* LaTeX excerpt, rendered as a printed page */
+  .tex-frame { aspect-ratio: 3 / 5; overflow: hidden; position: relative; background: #FDFDFB; color: #161616;
+    border: 1px solid var(--rule); box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px -12px rgba(0,0,0,.18);
+    font: 400 .74rem/1.5 "STIX Two Text", "Latin Modern Roman", "Times New Roman", serif; padding: 1.15rem 1.5rem 0; }
+  .tex-frame::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3.5rem;
+    background: linear-gradient(rgba(253,253,251,0), #FDFDFB 85%); }
+  .tex-head { display: flex; justify-content: space-between; gap: 1rem; font-size: .6rem; white-space: nowrap; padding-bottom: .3rem;
+    border-bottom: .5px solid #161616; margin-bottom: .9rem; }
+  .tex-head b { font-weight: 700; }
+  .tex-sec { font-weight: 700; font-size: .82rem; margin: 0 0 .55rem; display: flex; gap: .9em; }
+  .tex-frame ol { margin: 0; padding-left: 1.35rem; }
+  .tex-cor { font-weight: 700; font-size: .82rem; margin: 1.1rem 0 .5rem; }
+  .tex-par { margin: 0 0 .45rem; }
+  .tex-par b { font-weight: 700; margin-right: .6em; }
+  .tex-frame li { margin: 0 0 .45rem; padding-left: .2rem; }
+  .tex-frame li::marker { font-weight: 400; }
+  .tex-eq { display: block; text-align: center; margin: .45rem 0 .5rem; font-size: .88rem; white-space: nowrap; }
+  .tex-frame i { font-style: italic; }
+  .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.15; }
+  .frac > span:first-child { border-bottom: .5px solid currentColor; padding: 0 .15em; }
+  .frac.sm { font-size: .72em; }
+  .vec { position: relative; display: inline-block; }
+  .vec::before { content: "\2192"; position: absolute; left: 50%; top: -.72em; transform: translateX(-50%); font-size: .75em; font-style: normal; }
+  .tex-frame sup, .tex-frame sub { font-size: .68em; line-height: 0; }
+  .tex-frame .sup-exp { display: inline-flex; align-items: center; gap: .1em; transform: translateY(-.55em); font-size: .72em; }
+
+  table.skills { border-collapse: collapse; width: 100%; max-width: 46rem; }
+  .skills th, .skills td { text-align: left; vertical-align: top; padding: .7rem 0; border-bottom: 1px solid var(--rule); }
+  .skills tr:first-child th, .skills tr:first-child td { border-top: 1px solid var(--rule); }
+  .skills th { font-weight: 400; color: var(--muted); width: 12rem; padding-right: 1rem; }
+
+  /* ---------- Mobility list ---------- */
+  .dest { list-style: none; padding: 0; margin: 0 0 1.25rem; max-width: 46rem; }
+  .dest li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: .75rem; padding: 1rem 0; margin: 0; border-bottom: 1px solid var(--rule); }
+  .dest li:first-child { border-top: 1px solid var(--rule); }
+  .dest .n { font: 400 1.75rem/1 var(--serif); color: var(--water); }
+  .dest .city { font: 400 1.5rem/1.15 var(--serif); display: block; margin-bottom: .15rem; }
+  .dest a.pairlink { font-size: .9375rem; }
+
+  /* ---------- Activities ---------- */
+  dl.activities { display: grid; grid-template-columns: 12rem 1fr; gap: 0; margin: 0; max-width: 50rem; }
+  dl.activities dt, dl.activities dd { padding: 1.1rem 0; border-bottom: 1px solid var(--rule); margin: 0; }
+  dl.activities dt:first-of-type, dl.activities dt:first-of-type + dd { border-top: 1px solid var(--rule); }
+  dl.activities dt { font: 400 1.4rem/1.2 var(--serif); padding-right: 1.5rem; }
+
+  .callout { max-width: 46rem; padding: 1.4rem 1.5rem; background: var(--water-soft); border-top: 2px solid var(--water); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ---------- Career ---------- */
+  .career-project { margin-top: 2.75rem; border-top: 2px solid var(--ink); padding-top: 1.75rem; }
+  .cp-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 2rem; margin-bottom: .5rem; }
+  .cp-head h3 { font: 400 clamp(2rem, 3.6vw, 2.6rem)/1.05 var(--serif); margin: 0; }
+  .toc { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; margin: 0; padding: 0; list-style: none; font-size: .9375rem; }
+  .toc li { margin: 0; }
+  .toc a { color: var(--muted); text-decoration: none; }
+  .toc a:hover { color: var(--ink); text-decoration: underline; }
+  .h-sub { font-size: 1.15rem; font-weight: 600; margin: 0 0 .35rem; }
+  .cp-block { margin-top: 2.25rem; }
+  .cp-block + .cp-block { margin-top: 3.5rem; padding-top: 2.25rem; border-top: 1px solid var(--rule); }
+
+  .docs-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; margin-top: 1.25rem; }
+  .doclist { list-style: none; padding: 0; margin: 0; }
+  .doclist li { margin: 0; }
+  .doc { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .1rem 1rem;
+    padding: 1.05rem .25rem; border-top: 1px solid var(--rule); color: var(--ink); text-decoration: none; transition: background-color .15s, padding .15s; }
+  .doclist li:last-child .doc { border-bottom: 1px solid var(--rule); }
+  .doc:hover { background: var(--paper-2); padding-left: .75rem; padding-right: .75rem; }
+  .doc-title { font: 400 1.5rem/1.15 var(--serif); }
+  .doc-meta { grid-column: 1; font-size: .875rem; color: var(--muted); }
+  .doc-ar { grid-row: 1 / span 2; grid-column: 2; width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1px solid var(--rule);
+    display: grid; place-items: center; color: var(--water); font-size: 1rem; transition: border-color .15s, background-color .15s, color .15s; }
+  .doc:hover .doc-ar { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .doc.missing { cursor: default; }
+  .doc.missing:hover { background: none; padding-left: .25rem; padding-right: .25rem; }
+  .doc.missing .doc-ar { opacity: .4; }
+  .docs-note { margin: 1rem 0 0; font-size: .875rem; color: var(--muted); }
+
+  .paths-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); gap: 2.5rem; align-items: center; }
+  .map { margin: 0; }
+  .map svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .map figcaption { font-size: .8125rem; color: var(--muted); margin-top: .35rem; }
+  .grat { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 2 4; fill: none; }
+  .grat-l { fill: var(--muted); font: 400 12px var(--sans); }
+  .route { fill: none; stroke: var(--water); stroke-width: 1.6; stroke-dasharray: 6 7; animation: flow 2.4s linear infinite; transition: opacity .2s, stroke .2s, stroke-width .2s; }
+  .route-base { fill: none; stroke: var(--water); stroke-width: 1; opacity: .18; transition: opacity .2s; }
+  .dst { cursor: pointer; transition: opacity .2s; }
+  .dst circle { fill: var(--paper); stroke: var(--water); stroke-width: 2; transition: fill .2s, stroke .2s; }
+  .dst .num { fill: var(--water); font: 400 19px var(--serif); }
+  .dst .city { fill: var(--ink); font: 400 22px var(--serif); }
+  .dst .inst { fill: var(--muted); font: 400 13.5px var(--sans); }
+  .dst text, .home text, .grat-l { paint-order: stroke; stroke: var(--paper); stroke-width: 5px; stroke-linejoin: round; }
+  .home circle.core { fill: var(--sand); }
+  .home circle.halo { fill: none; stroke: var(--sand); stroke-width: 1; opacity: .5; }
+  .home .city { fill: var(--ink); font: 400 22px var(--serif); }
+  .home .inst { fill: var(--muted); font: 400 13.5px var(--sans); }
+  .map[data-active] .dst, .map[data-active] .route { opacity: .28; }
+  .map[data-active="1"] [data-n="1"], .map[data-active="2"] [data-n="2"], .map[data-active="3"] [data-n="3"] { opacity: 1; }
+  .map[data-active="1"] .route[data-n="1"], .map[data-active="2"] .route[data-n="2"], .map[data-active="3"] .route[data-n="3"] { stroke: var(--sand); stroke-width: 2.4; }
+  .map[data-active="1"] .dst[data-n="1"] circle, .map[data-active="2"] .dst[data-n="2"] circle, .map[data-active="3"] .dst[data-n="3"] circle { fill: var(--sand); stroke: var(--sand); }
+
+  .pairs { margin-top: 2.5rem; }
+  .pair { display: grid; grid-template-columns: 3.25rem minmax(0, 1fr) 3rem minmax(0, 1fr); padding: 2.25rem 0; border-top: 1px solid var(--rule); transition: background-color .2s; }
+  .pair:last-child { border-bottom: 1px solid var(--rule); }
+  .pair-num { font: 400 3rem/.9 var(--serif); color: var(--water); transition: color .2s; }
+  .pair.on .pair-num { color: var(--sand); }
+  .kind { color: var(--muted); font-size: .875rem; margin: 0 0 .25rem; }
+  .card h4 { font: 400 1.6rem/1.15 var(--serif); margin: 0 0 1.1rem; text-wrap: balance; }
+  .card dl { grid-template-columns: 7.5rem 1fr; }
+  .card.rm { padding: .1rem 0 0; }
+  .take { margin: 0 0 1.25rem; padding: 0; }
+  .take-l { display: block; color: var(--muted); font-size: .875rem; margin-bottom: .1rem; }
+  .take q { font: italic 400 1.45rem/1.25 var(--serif); quotes: "\201C" "\201D"; color: var(--ink); }
+  .take q::before { color: var(--sand); }
+  .take q::after { color: var(--sand); }
+  .card.mob { background: var(--water-soft); border-top: 2px solid var(--water); padding: 1.3rem 1.4rem 1.45rem; }
+  .mob-place { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .1rem 1rem; margin-bottom: .2rem; }
+  .mob-city { font: 400 2.1rem/1 var(--serif); color: var(--water); }
+  .mob-dist { font-size: .8125rem; color: var(--muted); }
+  .card.mob h4 { font: 600 1.0625rem/1.35 var(--sans); margin: .5rem 0 1rem; }
+  .joint { position: relative; }
+  .joint::before { content: ""; position: absolute; left: .4rem; right: .4rem; top: 3.4rem; border-top: 1px dashed var(--sand); }
+  .joint::after { content: ""; position: absolute; right: .4rem; top: 3.4rem; width: 0; height: 0; margin-top: -4.5px;
+    border-left: 7px solid var(--sand); border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; }
+  .joint span { position: absolute; left: .1rem; top: 3.4rem; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--sand); }
+
+  .internship { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 2.5rem; padding: 1.75rem 1.75rem 1.9rem;
+    background: var(--water-soft); border-top: 2px solid var(--sand); }
+  .internship h4 { font: 400 1.9rem/1.1 var(--serif); margin: 0 0 .5rem; }
+  .status { display: inline-flex; align-items: center; gap: .5rem; font-size: .875rem; color: var(--muted); margin: 0 0 1rem; }
+  .status::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--sand); }
+  .internship dl { display: grid; grid-template-columns: 8rem 1fr; gap: .55rem 1.25rem; margin: 0; }
+  .internship dt { color: var(--muted); font-size: .9375rem; padding-top: .1rem; }
+  .internship dd { margin: 0; }
+
+  .exp { max-width: 46rem; padding: 1.5rem 0; border-top: 1px solid var(--rule); }
+  .exp:first-of-type { border-top: 0; padding-top: 0; }
+  .exp h4 { font: 400 1.6rem/1.15 var(--serif); margin: 0 0 .25rem; }
+  .exp ul { margin-bottom: 0; }
+
+  footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: .875rem; }
+  .foot { max-width: var(--wrap); margin: 0 auto; padding: 1.75rem 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; }
+  .totop { font: inherit; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: .18em; }
+  .totop:hover { color: var(--ink); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1060px) {
+    .pair { grid-template-columns: 3.25rem minmax(0, 1fr); row-gap: 0; }
+    .pair .card.rm { grid-column: 2; }
+    .pair .joint { grid-column: 2; height: 2.5rem; }
+    .pair .card.mob { grid-column: 2; }
+    .joint::before { left: 1.5rem; right: auto; top: .35rem; bottom: .35rem; border-top: 0; border-left: 1px dashed var(--sand); }
+    .joint::after { left: calc(1.5rem - 4px); right: auto; top: auto; bottom: .1rem; margin: 0;
+      border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; border-top: 7px solid var(--sand); border-bottom: 0; }
+    .joint span { left: calc(1.5rem - 4px); top: .35rem; margin: 0; }
+  }
+  @media (max-width: 900px) {
+    .hero-inner { padding: 2.75rem 1.25rem 13.5rem; }
+    .hero svg { top: auto; height: 13rem; }
+    .welcome-grid, .docs-grid, .paths-intro, .internship { grid-template-columns: 1fr; gap: 2rem; }
+    .project { grid-template-columns: 1fr; gap: 1.5rem; }
+    .glance { grid-template-columns: 1fr 1fr; }
+    .glance > div:nth-child(3) { grid-column: 1 / -1; padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); padding-top: 1rem; }
+    .map { max-width: 30rem; }
+  }
+  @media (max-width: 600px) {
+    main { padding: 2.25rem 1.25rem 3rem; }
+    .project dl, .card dl, .internship dl { grid-template-columns: 1fr; gap: .1rem; }
+    .project dd, .card dd, .internship dd { margin-bottom: .65rem; }
+    dl.activities { grid-template-columns: 1fr; }
+    dl.activities dt { border-bottom: 0; padding-bottom: .2rem; }
+    dl.activities dd { padding-top: 0; }
+    dl.activities dt:first-of-type + dd { border-top: 0; }
+    .timeline > li { grid-template-columns: 1fr; gap: .25rem; }
+    .timeline .when { font-size: 1.25rem; }
+    .glance { grid-template-columns: 1fr; }
+    .glance > div, .glance > div + div { padding: 0; border: 0; }
+    .glance > div:nth-child(3) { border-top: 0; padding-top: 0; }
+    .skills th { width: 8rem; }
+    .pair { grid-template-columns: 1fr; }
+    .pair-num { margin-bottom: .75rem; font-size: 2.5rem; }
+    .pair .card.rm, .pair .joint, .pair .card.mob { grid-column: 1; }
+    .internship { padding: 1.4rem 1.25rem; }
+    .caption { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .streams path, .route { animation: none; }
+    section.tab.active { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <svg viewBox="0 0 1200 360" preserveAspectRatio="xMaxYMid slice" role="img" aria-label="Portrait of Louis Bonvoisin, drawn as the cylinder in a potential flow">
+    <defs><clipPath id="cylClip"><circle id="cylClipCircle"></circle></clipPath></defs>
+    <g class="streams" id="flow"></g>
+    <g id="cylinder"></g>
+  </svg>
+  <div class="hero-inner">
+    <p class="hero-kicker">ePortfolio &middot; ENSEEIHT, MF2E department</p>
+    <h1>Louis Bonvoisin</h1>
+    <p class="lede">Engineering student in fluid mechanics, energy and environment at ENSEEIHT, Toulouse. I turn physical problems into models, and models into code.</p>
+    <div class="links">
+      <a class="btn primary" data-href="cvEn">CV in English <span class="ar" aria-hidden="true">&darr;</span></a>
+      <a class="btn" data-href="cvFr">CV en français <span class="ar" aria-hidden="true">&darr;</span></a>
+      <a class="btn" data-href="linkedin">LinkedIn <span class="ar" aria-hidden="true">&nearr;</span></a>
+    </div>
+    <p class="next-line"><span>Next: research internship at IMFT on plastics and sediments in rivers. <a href="#career-internship">Read more</a></span></p>
+  </div>
+  <span class="caption">Potential flow past a cylinder</span>
+</header>
+
+<nav class="tabs" aria-label="Portfolio sections">
+  <ul>
+    <li><a href="#welcome">Welcome</a></li>
+    <li><a href="#engineering">Engineering course</a></li>
+    <li><a href="#mobility">International mobility</a></li>
+    <li><a href="#sustainability">Sustainability &amp; civic engagement</a></li>
+    <li><a href="#activities">Sport &amp; activities</a></li>
+    <li><a href="#career">Career development</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- WELCOME -->
+  <section class="tab" id="welcome">
+    <div class="welcome-grid">
+      <div>
+        <h2>Hi, I'm Louis.</h2>
+        <div class="prose">
+          <p>I'm a first-year engineering student at ENSEEIHT (Toulouse INP), in the Fluid Mechanics, Energy and Environment department (MF2E). Before that, I spent three years in classes préparatoires (PCSI, then PC*) at Lycée Louis Barthou in Pau.</p>
+          <p>What I enjoy most is the step from a physical phenomenon to a model, and from a model to code that runs. Alongside my studies, I tutor high-school students in maths and physics-chemistry, and I'm building a web application to learn JavaScript.</p>
+          <p>Next, I'm joining the Institut de Mécanique des Fluides de Toulouse (IMFT) for a research internship on how flexible plastics interact with sediments in rivers (21 October to 21 December). <a href="#career-internship">About the internship</a></p>
+        </div>
+      </div>
+      <div class="sub-pitch" id="pitch">
+        <figure class="pitch-fig">
+          <div class="video">
+          </div>
+          <figcaption><span>Elevator pitch, 2–3 minutes, in English</span><a href="#career-project">Go to my career project</a></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>At a glance</h3>
+      <dl class="glance">
+        <div>
+          <dt>Based in</dt><dd>Toulouse, France</dd>
+          <dt>Studying</dt><dd>Fluid mechanics, energy and environment</dd>
+        </div>
+        <div>
+          <dt>Next</dt><dd>Research internship at IMFT, February 2027</dd>
+          <dt>Learning</dt><dd>Linux, OpenFOAM, JavaScript</dd>
+        </div>
+        <div>
+          <dt>Languages</dt><dd>French (native), English (C1), Chinese (beginner)</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ENGINEERING COURSE -->
+  <section class="tab" id="engineering">
+    <h2>Engineering course</h2>
+    <p class="intro">My training in two stages: a demanding scientific foundation, then a specialisation in fluid mechanics.</p>
+
+    <div class="sub">
+      <h3>My path</h3>
+      <ol class="timeline">
+        <li>
+          <span class="when">2022 – 2025</span>
+          <div class="tl-body">
+            <h4>Classes préparatoires, PCSI then PC*</h4>
+            <p class="meta">Lycée Louis Barthou, Pau</p>
+            <p>Three years of intensive mathematics, physics and chemistry, preparing for the competitive entrance exams to the French Grandes Écoles.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2025 – today</span>
+          <div class="tl-body">
+            <h4>Engineering degree, MF2E department</h4>
+            <p class="meta">ENSEEIHT, Toulouse INP</p>
+            <p>Fluid mechanics, energy and environment: how fluids move and transfer heat, and the numerical methods used to simulate them.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="sub" id="engineering-projects">
+      <h3>Projects and productions</h3>
+
+      <article class="project">
+        <div>
+          <span class="p-num">01</span>
+          <h4>Blackjack trainer, a web application</h4>
+          <p class="meta">Personal project, 2026, in progress</p>
+          <dl>
+            <dt>Context</dt>
+            <dd>I wanted to learn web development properly, line by line, by building one complete application rather than following scattered tutorials.</dd>
+            <dt>What it does</dt>
+            <dd>A free-play mode, and a training mode that checks every decision (hit, stand, double, split, insurance) against basic strategy, explains the correct move and keeps session statistics.</dd>
+            <dt>Methods</dt>
+            <dd>Plain HTML, CSS and JavaScript with no framework, a 14-step development plan, version control with Git and hosting on GitHub Pages.</dd>
+            <dt>What I'm learning</dt>
+            <dd>Manipulating the DOM, handling events, and keeping the game logic separate from the display.</dd>
+          </dl>
+        </div>
+        <figure class="shot browser">
+          <div class="shot-frame">
+            <img src="blackjack.png" alt="Screenshot of the blackjack trainer in training mode" loading="lazy" onload="this.closest('.shot').classList.add('has')" onerror="this.remove()">
+          </div>
+          <figcaption>Training mode: each decision is checked against basic strategy.</figcaption>
+        </figure>
+      </article>
+
+      <article class="project">
+        <div>
+          <span class="p-num">02</span>
+          <h4>Physics-chemistry exam material in LaTeX</h4>
+          <p class="meta">Teaching, 2025 – 2026</p>
+          <dl>
+            <dt>Context</dt>
+            <dd>A mock baccalauréat paper in physics-chemistry for Terminale students (final year of high school), with its full worked solution.</dd>
+            <dt>What I did</dt>
+            <dd>Wrote a three-part exam on a parachute jump: free fall, fall with linear air drag and the limit velocity, then an energy balance on the role of the parachute. I typeset the statement and the answer key in LaTeX, from Newton's second law and differential equations to units and layout.</dd>
+            <dt>Tools</dt>
+            <dd>LaTeX (amsmath, fancyhdr)</dd>
+          </dl>
+        </div>
+        <figure class="shot">
+          <div class="tex-frame" role="img" aria-label="Extract of the exam typeset in LaTeX: exercise 2, fall with the parachute open">
+            <div class="tex-head"><b>Sujet de Bac – Physique-Chimie – Terminale</b><i>Académie générale</i></div>
+            <p class="tex-sec"><span>2</span><span>Exercice 2 – Chute avec frottements, parachute ouvert (8 points)</span></p>
+            <ol>
+              <li>Faire le bilan des forces qui s'exercent sur le parachutiste lorsque le parachute est ouvert (poids <span class="vec"><i>P</i></span> et force de frottement <span class="vec"><i>f</i></span>).</li>
+              <li>En appliquant la deuxième loi de Newton, montrer que la vitesse <i>v</i>(<i>t</i>) vérifie l'équation différentielle :
+                <span class="tex-eq"><i>m</i> <span class="frac"><span>d<i>v</i></span><span>d<i>t</i></span></span> = <i>mg</i> − <i>kv</i></span>
+              </li>
+              <li>On admet que la solution de cette équation différentielle s'écrit :
+                <span class="tex-eq"><i>v</i>(<i>t</i>) = <i>v</i><sub>∞</sub> + (<i>v</i><sub>1</sub> − <i>v</i><sub>∞</sub>) <i>e</i><span class="sup-exp">−<span class="frac"><span><i>k</i></span><span><i>m</i></span></span>(<i>t</i> − <i>t</i><sub>1</sub>)</span></span>
+                où <i>v</i><sub>∞</sub> est la vitesse limite de chute.
+              </li>
+            </ol>
+            <p class="tex-cor">Corrigé – Exercice 2</p>
+            <p class="tex-par"><b>1. Bilan des forces</b>Le parachutiste est soumis à son poids <span class="vec"><i>P</i></span> = <i>m</i><span class="vec"><i>g</i></span>, vertical vers le bas, et à la force de frottement <span class="vec"><i>f</i></span>, de norme <i>f</i> = <i>kv</i>, dirigée vers le haut.</p>
+            <p class="tex-par"><b>2. Équation différentielle</b>On projette la deuxième loi de Newton sur l'axe vertical orienté vers le bas :
+              <span class="tex-eq"><i>mg</i> − <i>kv</i> = <i>m</i> <span class="frac"><span>d<i>v</i></span><span>d<i>t</i></span></span></span>
+            </p>
+            <p class="tex-par"><b>3. Vitesse limite</b>À vitesse limite, l'accélération est nulle : d<i>v</i>/d<i>t</i> = 0, d'où
+              <span class="tex-eq"><i>v</i><sub>∞</sub> = <span class="frac"><span><i>mg</i></span><span><i>k</i></span></span> = <span class="frac"><span>80,0 × 9,8</span><span>70</span></span> ≈ 11,2 m·s<sup>−1</sup></span>
+            </p>
+          </div>
+          <figcaption>Extract of the statement and the start of the answer key: exercise 2, fall with the parachute open.</figcaption>
+        </figure>
+      </article>
+
+    </div>
+
+    <div class="sub">
+      <h3>Skills</h3>
+      <table class="skills">
+        <tr><th scope="row">Programming</th><td>Python; JavaScript, HTML and CSS (learning)</td></tr>
+        <tr><th scope="row">Scientific writing</th><td>LaTeX</td></tr>
+        <tr><th scope="row">Tools</th><td>Git, GitHub, VS Code</td></tr>
+        <tr><th scope="row">Optimisation</th><td>Constraint programming basics (OR-Tools CP-SAT), explored for school timetabling</td></tr>
+        <tr><th scope="row">Currently learning</th><td>Linux command line, OpenFOAM</td></tr>
+        <tr><th scope="row">Media</th><td>Video editing and subtitling (CapCut)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- INTERNATIONAL MOBILITY -->
+  <section class="tab" id="mobility">
+    <h2>International mobility</h2>
+    <p class="intro">ENSEEIHT requires at least 17 weeks abroad and an English level of B2+ before graduation. I want that time abroad to serve my career project, so each destination below matches one of my role models.</p>
+
+    <div class="sub">
+      <h3>Languages</h3>
+      <dl class="facts">
+        <dt>French</dt><dd>Native</dd>
+        <dt>English</dt><dd>C1</dd>
+        <dt>Chinese</dt><dd>Beginner, learning pinyin and characters</dd>
+      </dl>
+    </div>
+
+    <div class="sub" id="mobility-lv2">
+      <h3>Second foreign language (LV2)</h3>
+      <p>I chose Chinese as my second foreign language at ENSEEIHT, building on the basics I had started on my own: pinyin, tones and everyday characters.</p>
+    </div>
+
+    <div class="sub">
+      <h3>Where I'd like to go</h3>
+      <ol class="dest">
+        <li><span class="n">1</span><div><span class="city">Stockholm, Sweden</span>Exchange semester at KTH, focused on turbulence and computational fluid dynamics. <a class="pairlink" href="#career-pair-1">Matching role model</a></div></li>
+        <li><span class="n">2</span><div><span class="city">Rhode-Saint-Genèse, Belgium</span>Research internship at the von Karman Institute for Fluid Dynamics. <a class="pairlink" href="#career-pair-2">Matching role model</a></div></li>
+        <li><span class="n">3</span><div><span class="city">Delft, Netherlands</span>Exchange at TU Delft or internship at Deltares, in river hydraulics. <a class="pairlink" href="#career-pair-3">Matching role model</a></div></li>
+      </ol>
+      <p><a href="#career-paths">See how each destination fits my career project</a></p>
+    </div>
+  </section>
+
+  <!-- SUSTAINABILITY -->
+  <section class="tab" id="sustainability">
+    <h2>Sustainability and civic engagement</h2>
+
+    <div class="sub">
+      <h3>Why it matters in my field</h3>
+      <p class="prose">MF2E sits where fluid mechanics meets the energy transition and the environment: how heat and energy are transferred or lost, how pollutants, sediments and plastic debris travel in rivers. Environmental flows are one of the areas I'd most like to work on.</p>
+    </div>
+
+    <div class="sub" id="sustainability-rivers">
+      <h3>Plastics and sediments in rivers</h3>
+      <div class="callout">
+        <p>My upcoming internship at IMFT takes me straight into this question. It looks at how flexible plastics interact with sediments in rivers: plastic debris and sediment are carried by the same flow, and understanding how they settle, get trapped or travel together helps predict where plastic pollution ends up.</p>
+        <p><a href="#career-internship">About the internship</a> &middot; <a href="#career-rm3">The career path it leads to</a></p>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>WWOOFing, summer 2026</h3>
+      <p class="prose">Six weeks as a volunteer on organic farms through the WWOOF network, helping with farm work in exchange for room and board.</p>
+      <p class="prose">I spent this time in Lacadée, in the Béarn. I drove farm machinery, planted a range of crops and looked after the animals, from feeding to daily care.</p>
+      <p class="prose">Working the land day after day made the physical cost of food very concrete: the water, fuel and time behind every harvest. It changed how I look at the resources a farm depends on, and the role engineers can play in using them better.</p>
+    </div>
+
+    <div class="sub">
+      <h3>Civic engagement</h3>
+      <p class="prose">ENSEEIHT asks every student for at least 40 hours of civic engagement before graduation.</p>
+      <p class="prose">I plan to commit these hours to an environmental cause close to my field, ideally around the protection of rivers and water quality in the Toulouse area: clean-up and monitoring actions, and explaining to the public, in simple terms, how pollution travels in water.</p>
+    </div>
+  </section>
+
+  <!-- SPORT & ACTIVITIES -->
+  <section class="tab" id="activities">
+    <h2>Sport and other activities</h2>
+    <dl class="activities">
+      <dt>Sport</dt>
+      <dd>Weight training. A leg injury keeps me away from running for now, so I focus on strength work for the upper body and core.</dd>
+      <dt>Teaching</dt>
+      <dd>I tutor secondary-school students in maths and physics-chemistry. Explaining the same idea in several ways until it clicks is also the best test of my own understanding.</dd>
+      <dt>Building for the web</dt>
+      <dd>My blackjack trainer started as a way to learn JavaScript and grew into a full project. <a href="#engineering-projects">See the project</a></dd>
+      <dt>Probability games</dt>
+      <dd>Poker and blackjack strategy: thinking in probabilities and expected value, and deciding with incomplete information.</dd>
+      <dt>Languages and video</dt>
+      <dd>Learning Chinese, and editing videos with multilingual subtitles.</dd>
+    </dl>
+  </section>
+
+  <!-- CAREER DEVELOPMENT -->
+  <section class="tab" id="career">
+    <h2>Career development</h2>
+    <p class="intro">This is my career project: where I stand today, three people whose path inspires me, and the international experience that would bring me closer to it.</p>
+
+    <div class="career-project" id="career-project">
+      <div class="cp-head">
+        <h3>Career project</h3>
+        <ul class="toc" aria-label="In this section">
+          <li><a href="#career-docs">CV, LinkedIn and pitch</a></li>
+          <li><a href="#career-paths">Role models and mobility</a></li>
+          <li><a href="#career-experience">Experience</a></li>
+          <li><a href="#career-internship">Upcoming internship</a></li>
+        </ul>
+      </div>
+
+      <div class="cp-block" id="career-docs">
+        <h4 class="h-sub">My documents</h4>
+        <div class="docs-grid">
+          <div class="video">
+          </div>
+          <div>
+            <ul class="doclist">
+              <li><a class="doc" data-href="cvEn"><span class="doc-title">CV in English</span><span class="doc-meta">PDF</span><span class="doc-ar" aria-hidden="true">&darr;</span></a></li>
+              <li><a class="doc" data-href="cvFr"><span class="doc-title">CV en français</span><span class="doc-meta">PDF</span><span class="doc-ar" aria-hidden="true">&darr;</span></a></li>
+              <li><a class="doc" data-href="linkedin" data-missing="TODO: add your LinkedIn URL in CONFIG.linkedin"><span class="doc-title">LinkedIn profile</span><span class="doc-meta">linkedin.com</span><span class="doc-ar" aria-hidden="true">&nearr;</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cp-block" id="career-paths">
+        <div class="paths-intro">
+          <div>
+            <h4 class="h-sub">Three role models, three mobility projects</h4>
+            <p class="prose">I analysed three professional profiles close to the career I'm aiming for. Each one is paired with an international project that would help me get there.</p>
+            <p class="prose meta">From Toulouse, each route leads to the place where I could build the skills of one role model: simulation in Stockholm, experiments near Brussels, river hydraulics in Delft.</p>
+          </div>
+          <figure class="map" id="map">
+            <svg viewBox="0 0 520 440" aria-labelledby="mapTitle">
+              <title id="mapTitle">Schematic map linking Toulouse to Stockholm, Rhode-Saint-Genèse and Delft</title>
+              <g id="mapGrat"></g>
+              <g id="mapRoutes"></g>
+              <g id="mapPlaces"></g>
+            </svg>
+            <figcaption>Schematic, to scale in latitude. Select a destination to see its pair.</figcaption>
+          </figure>
+        </div>
+
+        <div class="pairs">
+
+          <div class="pair" id="career-pair-1" data-pair="1">
+            <div class="pair-num" aria-hidden="true">1</div>
+            <div class="card rm" id="career-rm1">
+              <p class="kind">Role model 1</p>
+              <h4>CFD research engineer in high-performance computing</h4>
+              <p class="take"><span class="take-l">What I take</span><q>Programming and numerical methods matter as much as physics.</q></p>
+              <dl>
+                <dt>Who</dt><dd><span class="todo">TODO: name, company, source (My Job Glasses or alumni interview)</span></dd>
+                <dt>Path</dt><dd>Engineering school in fluid mechanics, often a PhD, then a research engineer position in a computing centre such as CERFACS.</dd>
+                <dt>Day to day</dt><dd>Develops and runs large simulations on supercomputers, checks them against experiments, writes code and publishes results.</dd>
+                <dt>My next step</dt><dd>Learn Linux and OpenFOAM, then parallel computing.</dd>
+              </dl>
+            </div>
+            <div class="joint" aria-hidden="true"><span></span></div>
+            <div class="card mob">
+              <p class="kind">Mobility project 1</p>
+              <div class="mob-place"><span class="mob-city">Stockholm</span><span class="mob-dist" data-dist="1">Sweden</span></div>
+              <h4>Exchange semester at KTH, Stockholm</h4>
+              <dl>
+                <dt>Format</dt><dd>Academic exchange, one semester (17 weeks or more)</dd>
+                <dt>Why it fits</dt><dd>KTH's FLOW research centre works on turbulence and computational fluid dynamics, and its engineering mechanics courses are taught in English.</dd>
+                <dt>What I'd gain</dt><dd>Hands-on experience with simulation codes in an international research environment.</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="pair" id="career-pair-2" data-pair="2">
+            <div class="pair-num" aria-hidden="true">2</div>
+            <div class="card rm" id="career-rm2">
+              <p class="kind">Role model 2</p>
+              <h4>Aerodynamics research engineer in aerospace research</h4>
+              <p class="take"><span class="take-l">What I take</span><q>Experiments and simulations only make sense together.</q></p>
+              <dl>
+                <dt>Who</dt><dd><span class="todo">TODO: name, company, source</span></dd>
+                <dt>Path</dt><dd>Engineering school, then a master's or a PhD in aerodynamics, then research in a centre such as ONERA.</dd>
+                <dt>Day to day</dt><dd>Studies flows around aircraft and engines, combining wind-tunnel experiments with numerical simulation.</dd>
+                <dt>My next step</dt><dd>Get hands-on with measurement techniques and compressible flows.</dd>
+              </dl>
+            </div>
+            <div class="joint" aria-hidden="true"><span></span></div>
+            <div class="card mob">
+              <p class="kind">Mobility project 2</p>
+              <div class="mob-place"><span class="mob-city">Rhode-Saint-Genèse</span><span class="mob-dist" data-dist="2">Belgium</span></div>
+              <h4>Research internship at the von Karman Institute, Belgium</h4>
+              <dl>
+                <dt>Format</dt><dd>Research internship, 17 weeks or more</dd>
+                <dt>Why it fits</dt><dd>The VKI is an international institute dedicated to fluid dynamics, with departments in aeronautics, turbomachinery and environmental flows, and wind tunnels on site.</dd>
+                <dt>What I'd gain</dt><dd>Experimental skills, and experience in an international team working in English.</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="pair" id="career-pair-3" data-pair="3">
+            <div class="pair-num" aria-hidden="true">3</div>
+            <div class="card rm" id="career-rm3">
+              <p class="kind">Role model 3</p>
+              <h4>Hydraulic engineer in an engineering consultancy</h4>
+              <p class="take"><span class="take-l">What I take</span><q>A simulation is useful when it helps someone decide.</q></p>
+              <dl>
+                <dt>Who</dt><dd><span class="todo">TODO: name, company, source</span></dd>
+                <dt>Path</dt><dd>Engineering school in fluid mechanics or hydraulics, then straight into a consultancy (bureau d'études).</dd>
+                <dt>Day to day</dt><dd>Models rivers and coastlines to assess flood risk, sediment transport or the impact of structures, then turns the results into recommendations for local authorities.</dd>
+                <dt>My next step</dt><dd>River hydraulics courses, and my <a href="#career-internship">internship at IMFT</a> on plastics and sediments in rivers, a first project on environmental flows.</dd>
+              </dl>
+            </div>
+            <div class="joint" aria-hidden="true"><span></span></div>
+            <div class="card mob">
+              <p class="kind">Mobility project 3</p>
+              <div class="mob-place"><span class="mob-city">Delft</span><span class="mob-dist" data-dist="3">Netherlands</span></div>
+              <h4>TU Delft or Deltares, Netherlands</h4>
+              <dl>
+                <dt>Format</dt><dd>Exchange semester at TU Delft, or internship at Deltares (17 weeks or more)</dd>
+                <dt>Why it fits</dt><dd>The Netherlands is a world reference in water management: TU Delft is known for hydraulic engineering, and Deltares is an applied research institute on water and the subsurface.</dd>
+                <dt>What I'd gain</dt><dd>Real-world river modelling and a strong environmental profile.</dd>
+              </dl>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="sub" id="career-experience">
+      <h3>Experience</h3>
+      <article class="exp">
+        <h4>Private tutor in maths and physics-chemistry</h4>
+        <p class="meta">Self-employed, Toulouse, since 2025</p>
+        <ul>
+          <li>One-to-one lessons for secondary-school students, from homework help to test preparation.</li>
+          <li>Exercises and assessment material written in LaTeX.</li>
+          <li>Pace and explanations adapted to each student.</li>
+        </ul>
+      </article>
+      <article class="exp">
+        <h4>Internships (S6 and S8)</h4>
+        <p><span class="todo">TODO after each internship: company, mission, results, written with the STAR method.</span></p>
+      </article>
+    </div>
+
+    <div class="sub" id="career-internship">
+      <h3>Upcoming internship</h3>
+      <div class="internship">
+        <div>
+          <h4>Research internship at IMFT</h4>
+          <p class="status">Internship agreement in progress</p>
+          <p>At the Institut de Mécanique des Fluides de Toulouse, I'll study how flexible plastics interact with sediments in rivers.</p>
+        </div>
+        <dl>
+          <dt>Lab</dt><dd>Institut de Mécanique des Fluides de Toulouse (IMFT)</dd>
+          <dt>Topic</dt><dd>Interaction between flexible plastics and sediments in rivers</dd>
+          <dt>Dates</dt><dd><span class="todo">TODO: start and end dates</span></dd>
+          <dt>Why it matters</dt><dd>It connects directly to the <a href="#sustainability-rivers">transport of plastics and sediments in rivers</a>, and is a first step towards the environmental-flow and hydraulics career of <a href="#career-rm3">role model 3</a>.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <span>Louis Bonvoisin, ENSEEIHT, MF2E department. Last updated October 2026.</span>
+    <button class="totop" type="button">Back to top</button>
+  </div>
+</footer>
+
+<script>
+  /* ---------- EDIT HERE ---------- */
+  const CONFIG = {
+    pitchVideo: "",   // YouTube embed link, e.g. "https://www.youtube.com/embed/VIDEO_ID"
+    linkedin: "",     // e.g. "https://www.linkedin.com/in/your-profile" (hidden while empty)
+    github: "https://github.com/louisbonvoisin",
+    cvEn: "cv-en.png",  // replace with "cv-en.pdf" once exported
+    cvFr: "cv-fr.png"   // replace with "cv-fr.pdf" once exported
+  };
+  /* ------------------------------- */
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function el(tag, attrs, parent, text) {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  // Links from CONFIG (hidden when empty, or shown as a TODO when data-missing is set)
+  document.querySelectorAll('[data-href]').forEach(a => {
+    const url = CONFIG[a.dataset.href];
+    if (!url) {
+      if (a.dataset.missing) {
+        a.classList.add('missing');
+        a.querySelector('.doc-meta').innerHTML = '<span class="todo">' + a.dataset.missing + '</span>';
+      } else a.hidden = true;
+      return;
+    }
+    a.href = url;
+    if (/^https?:/.test(url)) { a.target = "_blank"; a.rel = "noopener"; }
+  });
+
+  // Pitch video
+  if (CONFIG.pitchVideo) {
+    document.querySelectorAll('.video').forEach(box => {
+      box.classList.add('has');
+      box.innerHTML = '<iframe src="' + CONFIG.pitchVideo + '" title="Elevator pitch video" ' +
+        'allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    });
+  }
+
+  // Tabs with shareable links (#career, #career-paths...)
+  const hero = document.querySelector('.hero');
+  const sections = [...document.querySelectorAll('section.tab')];
+  const nav = document.querySelector('nav.tabs');
+  const navList = nav.querySelector('ul');
+  const navLinks = [...nav.querySelectorAll('a')];
+
+  function scrollToY(y) {
+    window.scrollTo({ top: Math.max(0, y), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  }
+  function route(scroll) {
+    const id = location.hash.slice(1) || 'welcome';
+    let target = document.getElementById(id);
+    let tab = target ? target.closest('section.tab') : null;
+    if (!tab) { tab = sections[0]; target = tab; }
+    sections.forEach(s => s.classList.toggle('active', s === tab));
+    navLinks.forEach(a => {
+      if (a.getAttribute('href') === '#' + tab.id) {
+        a.setAttribute('aria-current', 'page');
+        navList.scrollLeft = a.offsetLeft - (navList.clientWidth - a.offsetWidth) / 2;
+      } else a.removeAttribute('aria-current');
+    });
+    if (!scroll && target === tab) return;
+    requestAnimationFrame(() => {
+      if (target !== tab) scrollToY(target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 16);
+      else if (window.scrollY > hero.offsetHeight) scrollToY(hero.offsetHeight);
+    });
+  }
+
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    e.preventDefault();
+    history.pushState(null, '', a.getAttribute('href'));
+    route(true);
+  });
+  window.addEventListener('popstate', () => route(true));
+  document.querySelector('.totop').addEventListener('click', () => scrollToY(0));
+  route(false);
+
+  // Hero: streamlines of potential flow past a cylinder, psi = U y (1 - R^2 / r^2)
+  // The cylinder holds the portrait (photo.jpg); initials show if the photo is missing.
+  (function drawFlow() {
+    const g = document.getElementById('flow');
+    const W = 1200, S = 58, cx = 860, cy = 180, R = 1.4;
+    const xmin = -cx / S, xmax = (W - cx) / S, dx = 0.08;
+    const levels = [0.12, 0.35, 0.65, 1.0, 1.4, 1.85, 2.35, 2.9];
+
+    function solveY(x, c) {
+      let lo = Math.abs(x) < R ? Math.sqrt(R * R - x * x) : 0, hi = c + 3;
+      for (let i = 0; i < 50; i++) {
+        const m = (lo + hi) / 2;
+        if (m * (1 - R * R / (x * x + m * m)) > c) hi = m; else lo = m;
+      }
+      return (lo + hi) / 2;
+    }
+    function add(d, i) {
+      const p = el('path', { d }, g);
+      p.style.animationDelay = (-i * 0.41) + 's';
+    }
+    let i = 0;
+    levels.forEach(c => {
+      let up = '', down = '';
+      for (let x = xmin; x <= xmax + 1e-9; x += dx) {
+        const y = solveY(x, c), px = (cx + x * S).toFixed(1);
+        up += (up ? 'L' : 'M') + px + ' ' + (cy - y * S).toFixed(1);
+        down += (down ? 'L' : 'M') + px + ' ' + (cy + y * S).toFixed(1);
+      }
+      add(up, i++); add(down, i++);
+    });
+    add('M0 ' + cy + 'L' + (cx - R * S) + ' ' + cy, i++);
+    add('M' + (cx + R * S) + ' ' + cy + 'L' + W + ' ' + cy, i++);
+
+    const r = R * S, cyl = document.getElementById('cylinder');
+    const clip = document.getElementById('cylClipCircle');
+    clip.setAttribute('cx', cx); clip.setAttribute('cy', cy); clip.setAttribute('r', r);
+    el('circle', { cx, cy, r, class: 'cyl' }, cyl);
+    el('text', { x: cx, y: cy + 22, 'text-anchor': 'middle', class: 'cyl-initials' }, cyl, 'LB');
+    const sc = 3 * r / 820; // photo.jpg is 820 x 1097, face centred around (400, 300)
+    const img = el('image', { x: cx - 400 * sc, y: cy - 300 * sc, width: 820 * sc, height: 1097 * sc,
+      preserveAspectRatio: 'xMidYMid slice', 'clip-path': 'url(#cylClip)' }, cyl);
+    img.addEventListener('error', () => img.remove());
+    img.setAttribute('href', 'photo.jpg');
+    el('circle', { cx, cy, r: r + 1.5, class: 'cyl-ring' }, cyl);
+  })();
+
+  // Career map: Toulouse to the three mobility destinations
+  (function drawMap() {
+    const map = document.getElementById('map');
+    const home = { city: 'Toulouse', inst: 'ENSEEIHT · IMFT', lat: 43.6047, lon: 1.4442 };
+    const dests = [
+      { n: 1, city: 'Stockholm', inst: 'KTH', lat: 59.3293, lon: 18.0686, bulge: -60, lx: 14, ly: 6 },
+      { n: 2, city: 'Rhode-Saint-Genèse', inst: 'von Karman Institute', lat: 50.7453, lon: 4.4013, bulge: 34, lx: 16, ly: 26 },
+      { n: 3, city: 'Delft', inst: 'TU Delft · Deltares', lat: 52.0116, lon: 4.3571, bulge: 72, lx: 16, ly: -26 }
+    ];
+    const s = 24, k = Math.cos(50 * Math.PI / 180), ox = 64, oy = 400;
+    const P = (lat, lon) => [ox + (lon - home.lon) * k * s, oy - (lat - home.lat) * s];
+    const km = d => {
+      const rad = Math.PI / 180, a = Math.sin((d.lat - home.lat) * rad / 2) ** 2 +
+        Math.cos(home.lat * rad) * Math.cos(d.lat * rad) * Math.sin((d.lon - home.lon) * rad / 2) ** 2;
+      return Math.round(2 * 6371 * Math.asin(Math.sqrt(a)) / 10) * 10;
+    };
+    const fmt = n => n.toLocaleString('en-GB');
+
+    const grat = document.getElementById('mapGrat');
+    [45, 50, 55].forEach(lat => {
+      const y = P(lat, 0)[1];
+      el('line', { x1: 40, x2: 516, y1: y, y2: y, class: 'grat' }, grat);
+      el('text', { x: 4, y: y + 4, class: 'grat-l' }, grat, lat + '° N');
+    });
+    [0, 5, 10, 15, 20].forEach(lon => {
+      const x = P(home.lat, lon)[0];
+      el('line', { x1: x, x2: x, y1: 8, y2: 418, class: 'grat' }, grat);
+      el('text', { x, y: 436, 'text-anchor': 'middle', class: 'grat-l' }, grat, lon ? lon + '° E' : '0°');
+    });
+
+    const routes = document.getElementById('mapRoutes'), places = document.getElementById('mapPlaces');
+    const [hx, hy] = P(home.lat, home.lon);
+    dests.forEach((d, i) => {
+      const [x, y] = P(d.lat, d.lon), vx = x - hx, vy = y - hy, L = Math.hypot(vx, vy);
+      const qx = (hx + x) / 2 - vy / L * d.bulge, qy = (hy + y) / 2 + vx / L * d.bulge;
+      const path = 'M' + hx + ' ' + hy + 'Q' + qx.toFixed(1) + ' ' + qy.toFixed(1) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1);
+      el('path', { d: path, class: 'route-base' }, routes);
+      const r = el('path', { d: path, class: 'route', 'data-n': d.n }, routes);
+      r.style.animationDelay = (-i * .8) + 's';
+
+      const dist = km(d);
+      const a = el('a', { href: '#career-pair-' + d.n, class: 'dst', 'data-n': d.n,
+        'aria-label': d.city + ', ' + d.inst + ', pair ' + d.n }, places);
+      el('circle', { cx: x, cy: y, r: 6 }, a);
+      const t = el('text', { x: x + d.lx, y: y + d.ly }, a);
+      el('tspan', { class: 'num' }, t, d.n + '  ');
+      el('tspan', { class: 'city' }, t, d.city);
+      el('text', { x: x + d.lx, y: y + d.ly + 18, class: 'inst' }, a, d.inst + ' · ' + fmt(dist) + ' km');
+      const tag = document.querySelector('[data-dist="' + d.n + '"]');
+      if (tag) tag.textContent += ', ' + fmt(dist) + ' km from Toulouse';
+    });
+
+    const h = el('g', { class: 'home' }, places);
+    el('circle', { cx: hx, cy: hy, r: 14, class: 'halo' }, h);
+    el('circle', { cx: hx, cy: hy, r: 7, class: 'core' }, h);
+    el('text', { x: hx + 20, y: hy + 6, class: 'city' }, h, home.city);
+    el('text', { x: hx + 20, y: hy + 24, class: 'inst' }, h, home.inst);
+
+    const pairs = [...document.querySelectorAll('[data-pair]')];
+    function setActive(n) {
+      if (n) map.dataset.active = n; else delete map.dataset.active;
+      pairs.forEach(p => p.classList.toggle('on', p.dataset.pair === String(n)));
+    }
+    pairs.forEach(p => {
+      p.addEventListener('mouseenter', () => setActive(p.dataset.pair));
+      p.addEventListener('mouseleave', () => setActive(null));
+      p.addEventListener('focusin', () => setActive(p.dataset.pair));
+    });
+    places.querySelectorAll('.dst').forEach(a => {
+      a.addEventListener('mouseenter', () => setActive(a.dataset.n));
+      a.addEventListener('mouseleave', () => setActive(null));
+      a.addEventListener('focus', () => setActive(a.dataset.n));
+      a.addEventListener('blur', () => setActive(null));
+    });
+  })();
+</script>
+</body>
+</html>
